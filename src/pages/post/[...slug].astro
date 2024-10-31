@@ -36,14 +36,12 @@ const relatedPosts = getRelatedPosts(post)
 const { Content, headings, remarkPluginFrontmatter } = await post.render()
 
 const disqusEnabled = disqusConfig.enabled
+
+const minutos = remarkPluginFrontmatter.minutesRead.match(/\d+/)[0]
+const minutosLeitura = `${minutos} min de leitura`
 ---
 
-<BlogPost
-	id={post.id}
-	data={post.data}
-	headings={headings}
-	readTime={remarkPluginFrontmatter.minutesRead}
->
+<BlogPost id={post.id} data={post.data} headings={headings} readTime={minutosLeitura}>
 	<div class='grid grid-cols-1 md:grid-cols-[20%_auto] gap-10 mt-8'>
 		<!-- aside  -->
 		<aside class='md:flex flex-col gap-8 hidden'>

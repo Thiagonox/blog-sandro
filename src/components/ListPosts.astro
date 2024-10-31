@@ -20,15 +20,10 @@ const { posts, FirstBig = false } = Astro.props
 	{
 		posts.map(async (post) => {
 			const { remarkPluginFrontmatter } = await post.render()
+			const minutos = remarkPluginFrontmatter.minutesRead.match(/\d+/)[0]
+			const minutosLeitura = `${minutos} min de leitura`
 
-			return (
-				<PostCard
-					id={post.id}
-					data={post.data}
-					slug={post.slug}
-					readTime={remarkPluginFrontmatter.minutesRead}
-				/>
-			)
+			return <PostCard id={post.id} data={post.data} slug={post.slug} readTime={minutosLeitura} />
 		})
 	}
 </section>

@@ -1,5 +1,5 @@
 // src/data/categories.ts
-var CATEGORIES = ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5']
+var CATEGORIES = ['Pol\xEDtica', 'Cidades', 'Esporte', 'Not\xEDcias do Brasil']
 
 // tina/config.ts
 import { defineConfig } from 'tinacms'
