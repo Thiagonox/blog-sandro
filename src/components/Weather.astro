@@ -1,0 +1,61 @@
+---
+// Weather.astro
+import { useEffect, useState } from 'react'
+
+const Weather = () => {
+	const [city, setCity] = useState('')
+	const [temperature, setTemperature] = useState(null)
+	const [error, setError] = useState(null)
+
+	useEffect(() => {
+		const fetchWeatherData = async () => {
+			// Obtendo a localização do visitante
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(
+					async (position) => {
+						const { latitude, longitude } = position.coords
+
+						// URL da API Open-Meteo para obter dados climáticos
+						const weatherApiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`
+
+						try {
+							const response = await fetch(weatherApiUrl)
+							if (!response.ok) throw new Error('Failed to fetch weather data')
+
+							const data = await response.json()
+							setCity('Localização atual') // Você pode definir um nome fixo ou melhorar com base em dados de geolocalização
+							setTemperature(data.current_weather.temperature) // Temperatura em Celsius
+						} catch (err) {
+							setError(err.message)
+						}
+					},
+					(err) => {
+						setError('Unable to retrieve your location')
+					}
+				)
+			} else {
+				setError('Geolocation is not supported by this browser')
+			}
+		}
+
+		fetchWeatherData()
+	}, [])
+
+	return (
+		<div>
+			{error && <p>Error: {error}</p>}
+			{city && temperature !== null ? (
+				<p>
+					A temperatura em {city} é {temperature}°C.
+				</p>
+			) : (
+				<p>Carregando...</p>
+			)}
+		</div>
+	)
+}
+
+export default Weather
+---
+
+<Weather />
