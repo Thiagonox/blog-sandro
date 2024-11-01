@@ -12,19 +12,19 @@ import ToggleTheme from './ToggleTheme.astro'
 const SOCIALNETWORKS = [
 	{
 		name: 'Facebook',
-		url: 'https://github.com/danielcgilibert/blog-template',
+		url: 'https://www.facebook.com/share/1597hcL9oz/',
 		icon: FacebookIcon
 	},
 
 	{
 		name: 'Instagram',
-		url: 'https://github.com/danielcgilibert/blog-template',
+		url: 'https://www.instagram.com/blog_sandro_informa/',
 		icon: InstagramIcon
 	},
 
 	{
 		name: 'Whatsapp',
-		url: '',
+		url: 'https://wa.me/+5577981563517?text=Ol%C3%A1',
 		icon: WhatsappIcon
 	}
 ]
@@ -61,10 +61,10 @@ const SOCIALNETWORKS = [
 	</div>
 
 	<div class='flex items-center gap-3 md:pl-3' transition:persist='navbar'>
-		<div>
+		<div class='w-12 flex justify-center'>
 			<Search />
 		</div>
-		<ToggleTheme />
+		<!-- <ToggleTheme /> -->
 		<button id='astro-header-drawer-button' type='button' class='md:ml-6 md:hidden'>
 			<MenuIcon />
 			<span class='sr-only'>Show Menu</span>
